@@ -24,6 +24,7 @@ Visión del proyecto
 Actualmente, Camilo permite calificar un evento desde el momento en que éste ha sido dado de alta. También soporta una cantidad ilimitada de evaluaciones (permitiendo más calificaciones que cantidad de participantes) y sólo aporta datos de la cantidad de calificaciones discriminadas por tipo.
 
 El proyecto tiene como objetivo que:
-*Los eventos sean evaluados una vez que éstos hayan finalizado, es decir, luego de que la charla se haya llevado a cabo.
-*Al momento de la creación de un evento, se pueda establecer una cantidad máxima de participantes y esta cantidad será el límite de evaluaciones que se permitirá para el evento en cuestión.
-*Cada evento, posteriormente a ser evaluado, obtenga una calificación general brindando un panorama global del desempeño del evento.
+
+- Los eventos sean evaluados una vez que éstos hayan finalizado, es decir, luego de que la charla se haya llevado a cabo.
+- Al momento de la creación de un evento, se pueda establecer una cantidad máxima de participantes y esta cantidad será el límite de evaluaciones que se permitirá para el evento en cuestión.
+- Cada evento, posteriormente a ser evaluado, obtenga una calificación general brindando un panorama global del desempeño del evento.
