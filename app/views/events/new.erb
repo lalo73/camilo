@@ -8,6 +8,7 @@
     <%= csrf_token_field %>
     <h1>Detalles del evento</h1>
     <input type="text" id="event[name]" name="event[name]" placeholder="nombre del evento" class="large" value="<%= @event.name %>"/>
+    <input type="text" id="event[max]" name="event[max]" placeholder="Cantidad de participantes" value="<%= @event.max %>"/>
     <input type="text" id="event_date" name="event[date]" placeholder="fecha:aaaa-mm-dd" value="<%= render_date(@event.date) %>" />
     <a href="#" id="event_date_button" class="add-on"><i class="icon-calendar"></i></a>
     <input type="submit" class="btn big" id="saveButton" value="Guardar" />

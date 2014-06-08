@@ -3,6 +3,7 @@ migration 2, :create_events do
     create_table :events do
       column :id, Integer, :serial => true
       column :name, String, :length => 255
+      column :max, Integer
       column :date, Date
       column :slug, String, :length => 255
       column :short_url, String, :length => 255
