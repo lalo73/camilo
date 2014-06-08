@@ -23,7 +23,7 @@ Camilo::App.controllers :events do
   post :create do
     @event = Event.new(params[:event])
     @event.account = current_account
-    if @event.save
+    if @event.save && @event.max >= 0
       @event.short_url = UrlShortener.for_default_url.shorten("events/rate/#{@event.slug}").short_url
       @event.save
       redirect(url(:events, :show, :id => @event.id))

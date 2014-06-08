@@ -15,7 +15,7 @@ Feature: Crear evento con cantidad
 	  When preciono el boton "saveButton"
     Then I should see "nombreevento1"
 
-  Scenario: Happy path 2
+  Scenario: Campo invalido 1
 	  Given estoy en la pagina de creacion de eventos "the new event page"
     And lleno el campo "event[name]" con "Nombre evento"
     And lleno el campo "event[date]" con tomorrow
@@ -23,7 +23,7 @@ Feature: Crear evento con cantidad
 	  When preciono el boton "saveButton"
     Then I should see "Error: ambos campos son requeridos"
 
-  Scenario: Campo invalido
+  Scenario: Campo invalido 2
 	  Given estoy en la pagina de creacion de eventos "the new event page"
     And lleno el campo "event[name]" con "Nombre evento"
     And lleno el campo "event[date]" con tomorrow
@@ -31,10 +31,10 @@ Feature: Crear evento con cantidad
 	  When preciono el boton "saveButton"
     Then I should see "Error: ambos campos son requeridos"
 
-  Scenario: Campo invalido 2
+  Scenario: Campo invalido 3
 	  Given estoy en la pagina de creacion de eventos "the new event page"
     And lleno el campo "event[name]" con "Nombre evento"
     And lleno el campo "event[date]" con tomorrow
-	  And lleno el campo "event[max]" con -10
+	  And lleno el campo "event[max]" con "-10"
 	  When preciono el boton "saveButton"
-    Then I should see "nombreevento1"
+    Then I should see "Error: ambos campos son requeridos"
