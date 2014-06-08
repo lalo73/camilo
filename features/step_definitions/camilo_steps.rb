@@ -5,7 +5,23 @@ end
 Given(/^event named "(.*?)" already exists$/) do |event_name|
   e = Event.new
   e.name = event_name
-  e.date = Date.today + 1
+  e.date = Date.today+1
+  e.account = Account.first
+  e.save
+end
+
+Given(/^event named "(.*?)" with date today$/) do |event_name|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today
+  e.account = Account.first
+  e.save
+end
+
+Given(/^event named "(.*?)" with date tomorrow$/) do |event_name|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today+1
   e.account = Account.first
   e.save
 end

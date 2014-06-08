@@ -4,7 +4,8 @@ Feature: Rate event
   So the speaker can improve his performance
 
   Background:
-    Given event named "the first event" already exists
+    Given event named "the first event" with date today
+    And event named "the second event" with date tomorrow
 
   Scenario: Happy path
     Given I want to rate "the first event"
@@ -12,3 +13,8 @@ Feature: Rate event
     When I follow "happyButton"
     And I wait a while    
     Then I should see "Gracias"
+
+  Scenario: Rate future event
+    Given I want to rate "the second event"
+    And I wait a while    
+    Then I should see "El evento no se encuentra disponible para evaluar porque no ha sido dictado"

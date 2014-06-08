@@ -48,6 +48,9 @@ Camilo::App.controllers :events do
     if(@event.nil?)
       @message = "El evento buscado no existe."
       render 'events/message'
+    elsif(@event.date > Date.today)
+      @message = "El evento no se encuentra disponible para evaluar porque no ha sido dictado"
+      render 'events/message'
     else
       render 'events/rate'
     end
