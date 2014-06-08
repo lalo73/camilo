@@ -3,7 +3,7 @@ class Event
 
   property :id, Serial
   property :name, String, :required => true
-  property :max, Integer, :required => true
+  property :max, Integer
   property :date, DateTime, :required => true
   property :slug, String
   property :short_url, String

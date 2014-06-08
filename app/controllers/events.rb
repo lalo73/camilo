@@ -23,12 +23,16 @@ Camilo::App.controllers :events do
   post :create do
     @event = Event.new(params[:event])
     @event.account = current_account
+    
     if @event.save && @event.max >= 0
       @event.short_url = UrlShortener.for_default_url.shorten("events/rate/#{@event.slug}").short_url
       @event.save
       redirect(url(:events, :show, :id => @event.id))
     else
       flash.now[:error] = "Error: ambos campos son requeridos"
+      if @event.max.is_a?(String) || @event.max < 0
+        flash.now[:error] = "Error: la cantidad de participantes debe ser un numero positivo"
+      end
       render 'events/new'
     end
   end
