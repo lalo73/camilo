@@ -52,13 +52,14 @@ if ['development', 'test', 'travis'].include?(PADRINO_ENV)
     task.cucumber_opts = ['features', '--format html -o reports/cucumber.html']
   end
 
-  require 'rubocop/rake_task'
-  desc 'Run RuboCop on the lib directory'
-  Rubocop::RakeTask.new(:rubocop) do |task|
+#COMENTAR PARA PODER CORRER LOS FEATURES
+  #require 'rubocop/rake_task'
+  #desc 'Run RuboCop on the lib directory'
+  #Rubocop::RakeTask.new(:rubocop) do |task|
     #task.patterns = ['lib/**/*.rb']
     # don't abort rake on failure
-    task.fail_on_error = false
-  end
+    #task.fail_on_error = false
+  #end
 
   task :default => [:all]
 end

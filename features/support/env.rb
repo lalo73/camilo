@@ -4,6 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../../config/boot")
 require 'capybara/cucumber'
 require 'rspec/expectations'
 require 'simplecov'
+#AGREGAR PARA PODER CORRER LOS FEATURES
 #require 'selenium-webdriver'
 #Selenium::WebDriver::Firefox::Binary.path='/home/martin/firefox/firefox/firefox-bin'
 
