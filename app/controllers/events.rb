@@ -56,7 +56,12 @@ Camilo::App.controllers :events do
       @message = "El evento no se encuentra disponible para evaluar porque no ha sido dictado"
       render 'events/message'
     else
-      render 'events/rate'
+      if @event.max > 0 && @event.ratings.size == @event.max
+        @message = "Este evento alcanso la cantidad maxima de evaluaciones."
+        render 'events/message'
+      elsif @event.max == 0 || @event.ratings.size != @event.max
+        render 'events/rate'
+      end
     end
   end
 
