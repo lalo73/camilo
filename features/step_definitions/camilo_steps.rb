@@ -14,6 +14,7 @@ Given(/^event named "(.*?)" with date today$/) do |event_name|
   e = Event.new
   e.name = event_name
   e.date = Date.today
+  e.max = 10
   e.account = Account.first
   e.save
 end
@@ -21,6 +22,7 @@ end
 Given(/^event named "(.*?)" with date tomorrow$/) do |event_name|
   e = Event.new
   e.name = event_name
+  e.max = 10
   e.date = Date.today+1
   e.account = Account.first
   e.save

@@ -10,6 +10,7 @@ Feature: Create event
   Scenario: Happy path
     Given I am on "the new event page"
     And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "10"
     And I fill in "event[date]" with tomorrow
     When I press "saveButton"
     Then I should see "myfirstevent1"
@@ -18,6 +19,7 @@ Feature: Create event
     Given I am on "the new event page"
     And event named "My first event" already exists
     And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "10"
     And I fill in "event[date]" with tomorrow
     When I press "saveButton"
     Then I should see "myfirstevent2"
@@ -25,6 +27,7 @@ Feature: Create event
   Scenario: Date is not valid
     Given I am on "the new event page"
     And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "10"
     And I fill in "event[date]" with yesterday
     When I press "saveButton"
     Then I should see "Error"
