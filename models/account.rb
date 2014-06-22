@@ -7,6 +7,12 @@ class Account
   property :email, String
   property :uid, String
   property :provider, String
+  property :hay_notificacion, Integer, :default  => 0
+
+  def notificar
+    return "Hay nuevas evaluaciones" if self.hay_notificacion == 1
+    return "Mis eventos"
+  end
 
   def friendly_name
     name.nil? ? uid : name

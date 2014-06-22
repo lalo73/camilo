@@ -6,6 +6,7 @@ migration 1, :create_accounts do
       column :email, String, :length => 255
       column :uid, String, :length => 255
       column :provider, String, :length => 255
+      column :hay_notificacion, Integer
     end
   end
 
