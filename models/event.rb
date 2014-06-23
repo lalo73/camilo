@@ -5,6 +5,7 @@ class Event
   property :name, String, :required => true
   property :max, Integer
   property :date, DateTime, :required => true
+  property :members, String
   property :slug, String
   property :short_url, String
   property :hay_notificaciones, Integer, :default  => 0
@@ -32,6 +33,17 @@ class Event
     return false
   end
 
+  def check_email
+    result = true
+    self.members.split(',').each do |mail|
+      unless mail.strip =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/ || mail.strip == ""
+        result =  false
+        break
+      end
+    end
+    return result
+  end
+
   def positive_ratings_count
     self.ratings.all(:value => 1).size
   end
@@ -42,6 +54,15 @@ class Event
 
   def neutral_ratings_count
     self.ratings.all(:value => 0).size
+  end
+
+  def average_ratings
+    total_rates = self.positive_ratings_count + negative_ratings_count + neutral_ratings_count
+    if total_rates == 0
+      then return " - "
+    else
+      return (self.positive_ratings_count * 10 + negative_ratings_count * 0 + neutral_ratings_count * 5) / total_rates
+    end
   end
 
   def set_slug

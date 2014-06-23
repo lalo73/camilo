@@ -4,15 +4,15 @@ Feature: Evaluar evento con cantidad de participantes
 
   Background:
     Given existe el evento "Evento A" con cantidad de participantes 1
-	  Given existe el evento "Evento B" con cantidad de participantes 0
+    Given existe el evento "Evento B" con cantidad de participantes 0
 
   Scenario: Evaluacion A
     Given quiero evaluar "Evento A"
     When I follow "happyButton"
     And I wait a while    
     Then deberia ver "Gracias"
-	  Given quiero evaluar "Evento A"   
-    Then deberia ver "Este evento alcanso la cantidad maxima de evaluaciones."
+    Given quiero evaluar "Evento A"   
+    Then deberia ver "Este evento alcanzo la cantidad maxima de evaluaciones."
 
   Scenario: Evaluacion B
     Given quiero evaluar "Evento B"

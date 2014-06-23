@@ -95,4 +95,61 @@ describe Event do
     end
 
   end
+
+  describe 'average_ratings' do
+
+    it 'should return " - " if the event did not receive ratings' do 
+      event = Event.new
+      event.average_ratings.should eq " - "
+    end
+    
+    it 'should return 0 if the event receive a negative rating' do
+      event = Event.new
+      rating = Rating.for_event(event)
+      rating.value = -1
+      event.ratings.push(rating)
+      
+      event.average_ratings.should eq 0
+    end
+
+    it 'should return 5 if the event receive a neutral rating' do
+      event = Event.new
+      rating = Rating.for_event(event)
+      rating.value = 0
+      event.ratings.push(rating)
+      
+      event.average_ratings.should eq 5
+    end
+
+    it 'should return 10 if the event receive a positive rating' do
+      event = Event.new
+      rating = Rating.for_event(event)
+      rating.value = 1
+      event.ratings.push(rating)
+      
+      event.average_ratings.should eq 10
+    end
+
+    it 'should return 6 if the event receive 2 positive ratings, 1 neutral rating and a 1 negative rating' do
+      event = Event.new
+      rating = Rating.for_event(event)
+      rating.value = -1
+      event.ratings.push(rating)
+      
+      rating2 = Rating.for_event(event)
+      rating2.value = 0
+      event.ratings.push(rating2)
+
+      rating3 = Rating.for_event(event)
+      rating3.value = 1
+      event.ratings.push(rating3)
+
+      rating4 = Rating.for_event(event)
+      rating4.value = 1
+      event.ratings.push(rating4)
+
+      event.average_ratings.should eq 6
+    end
+  end
+
 end

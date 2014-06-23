@@ -64,6 +64,60 @@ Given(/^the event named "(.*?)" and rated with (\d+)$/) do |event_name, rate|
   r.save
 end
 
+Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) times$/) do |event_name, rate, cant|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today + 1
+  e.account = Account.first
+  e.save
+  num = cant.to_i
+
+  num.times do
+    r = Rating.for_event(e)
+    r.value = rate
+    r.save
+    e.ratings.push(r)
+  end
+end
+
+Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) and "(.*?)"$/) do |event_name, rate1, rate2, rate3|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today + 1
+  e.account = Account.first
+  e.save
+  
+  r = Rating.for_event(e)
+  r.value = rate1
+  r.save
+  e.ratings.push(r)
+
+  r = Rating.for_event(e)
+  r.value = rate2
+  r.save
+  e.ratings.push(r)
+
+  r = Rating.for_event(e)
+  r.value = rate3
+  r.save
+  e.ratings.push(r)
+end
+
+Given(/^I add the member "(.*?)"$/) do |member|
+  miembros =  find_field("event[members]").value + ", " + member
+  fill_in("event[members]", :with => miembros)
+end
+
+Given(/^I remove the member "(.*?)"$/) do |member|  
+  miembros =  find_field("event[members]").value
+  miembros.slice! member
+  fill_in("event[members]", :with => miembros)
+end
+
 Given(/^I am browsing the ratings page for event with slug "(.*?)"$/) do |event_slug|
   visit "/events/#{event_slug}/ratings"
+end
+
+Given(/^I am browsing the edit page for event with slug "(.*?)"$/) do |event_slug|
+  visit "/events/#{event_slug}/edit"
 end
