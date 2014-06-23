@@ -43,7 +43,7 @@
         <ul class="nav pull-right" id="main-menu-right">
 
           <% if current_account %>
-            <li><a rel="tooltip" href="/events/my" title="Profile">Mis eventos</a></li>
+            <li><a rel="tooltip" href="/events/my" title="Profile"><%= current_account.notificar %></a></li>
             <li><a rel="tooltip" href="/" title="Profile"><%= current_account.friendly_name %></a></li>
             <li><a rel="tooltip" href="/logout" title="Cerrar sesión">Cerrar sesión</a></li>
           <% else %>
