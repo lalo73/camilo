@@ -5,7 +5,11 @@ migration 2, :create_events do
       column :name, String, :length => 255
       column :max, Integer
       column :date, Date
+<<<<<<< HEAD
       column :members, String
+=======
+      column :hay_notificaciones, Integer
+>>>>>>> develop
       column :slug, String, :length => 255
       column :short_url, String, :length => 255
       column :account_id, Integer

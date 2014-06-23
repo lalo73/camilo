@@ -8,11 +8,25 @@ class Event
   property :members, String
   property :slug, String
   property :short_url, String
+  property :hay_notificaciones, Integer, :default  => 0
   belongs_to :account
   has n, :ratings
   before :save, :set_slug
 
   validates_with_method :check_date
+
+  def nueva_evaluacion
+    self.hay_notificaciones = 1
+  end
+
+  def chekear_evaluacion
+    self.hay_notificaciones = 0
+  end
+
+  def hay_nuevas_evaluaciones
+    return "Hay nuevas evaluaciones" if self.hay_notificaciones == 1
+    return " " #No hay nuevas evaluaciones
+  end
 
   def check_date
     return (self.date >= Date.today) if self.date.is_a?(Date)

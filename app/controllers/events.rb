@@ -75,6 +75,11 @@ Camilo::App.controllers :events do
     rating.value = params[:value]
     rating.comment = params[:comment] 
     rating.save
+    #
+    @event.nueva_evaluacion
+    @event.account.hay_notificacion = 1
+    @event.save
+    #
     @message = "Gracias por su evaluacion"
     render 'events/message'
   end
@@ -82,6 +87,11 @@ Camilo::App.controllers :events do
   get '/:event_slug/ratings' do
     @event = Event.find_by_slug(params[:event_slug])   
     if(@event.account == current_account) 
+      #
+      @event.chekear_evaluacion
+      @event.account.hay_notificacion = 0
+      @event.save
+      #
       render 'events/ratings'
     else
       return 403
