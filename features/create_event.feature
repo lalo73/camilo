@@ -12,8 +12,27 @@ Feature: Create event
     And I fill in "event[name]" with "My first event"
     And I fill in "event[max]" with "10"
     And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
     When I press "saveButton"
     Then I should see "myfirstevent1"
+
+  Scenario: Event without members
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "10"
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with " "
+    When I press "saveButton"
+    Then I should see "myfirstevent1"
+
+  Scenario: Event with invalid member
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "10"
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1.com"
+    When I press "saveButton"
+    Then I should see "Error"
 
   Scenario: Event id already exists
     Given I am on "the new event page"
@@ -21,6 +40,7 @@ Feature: Create event
     And I fill in "event[name]" with "My first event"
     And I fill in "event[max]" with "10"
     And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
     When I press "saveButton"
     Then I should see "myfirstevent2"
 
@@ -29,6 +49,7 @@ Feature: Create event
     And I fill in "event[name]" with "My first event"
     And I fill in "event[max]" with "10"
     And I fill in "event[date]" with yesterday
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
     When I press "saveButton"
     Then I should see "Error"
 
@@ -36,5 +57,6 @@ Feature: Create event
     Given I am on "the new event page"
     And I fill in "event[name]" with " "
     And I fill in "event[date]" with yesterday
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
     When I press "saveButton"
     Then I should see "Error"

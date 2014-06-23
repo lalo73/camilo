@@ -103,6 +103,21 @@ Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) and "(.*?)"$/) do |
   e.ratings.push(r)
 end
 
+Given(/^I add the member "(.*?)"$/) do |member|
+  miembros =  find_field("event[members]").value + ", " + member
+  fill_in("event[members]", :with => miembros)
+end
+
+Given(/^I remove the member "(.*?)"$/) do |member|  
+  miembros =  find_field("event[members]").value
+  miembros.slice! member
+  fill_in("event[members]", :with => miembros)
+end
+
 Given(/^I am browsing the ratings page for event with slug "(.*?)"$/) do |event_slug|
   visit "/events/#{event_slug}/ratings"
+end
+
+Given(/^I am browsing the edit page for event with slug "(.*?)"$/) do |event_slug|
+  visit "/events/#{event_slug}/edit"
 end

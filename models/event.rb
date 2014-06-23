@@ -5,6 +5,7 @@ class Event
   property :name, String, :required => true
   property :max, Integer
   property :date, DateTime, :required => true
+  property :members, String
   property :slug, String
   property :short_url, String
   belongs_to :account
@@ -16,6 +17,17 @@ class Event
   def check_date
     return (self.date >= Date.today) if self.date.is_a?(Date)
     return false
+  end
+
+  def check_email
+    result = true
+    self.members.split(',').each do |mail|
+      unless mail.strip =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/ || mail.strip == ""
+        result =  false
+        break
+      end
+    end
+    return result
   end
 
   def positive_ratings_count

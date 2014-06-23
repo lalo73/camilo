@@ -24,7 +24,7 @@ Camilo::App.controllers :events do
     @event = Event.new(params[:event])
     @event.account = current_account
     
-    if @event.save && @event.max >= 0
+    if @event.save && @event.max >= 0 && @event.check_email
       @event.short_url = UrlShortener.for_default_url.shorten("events/rate/#{@event.slug}").short_url
       @event.save
       redirect(url(:events, :show, :id => @event.id))
@@ -32,6 +32,10 @@ Camilo::App.controllers :events do
       flash.now[:error] = "Error: ambos campos son requeridos"
       if @event.max.is_a?(String) || @event.max < 0
         flash.now[:error] = "Error: la cantidad de participantes debe ser un numero positivo"
+      end
+      
+      if !@event.check_email
+        flash.now[:error] = "Error: debe ingresar una direccion de e-mail valida"
       end
       render 'events/new'
     end
@@ -57,7 +61,7 @@ Camilo::App.controllers :events do
       render 'events/message'
     else
       if @event.max > 0 && @event.ratings.size == @event.max
-        @message = "Este evento alcanso la cantidad maxima de evaluaciones."
+        @message = "Este evento alcanzo la cantidad maxima de evaluaciones."
         render 'events/message'
       elsif @event.max == 0 || @event.ratings.size != @event.max
         render 'events/rate'
