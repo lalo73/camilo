@@ -8,7 +8,7 @@ bundler_args: --without development production
 deploy:
   provider: heroku
   api_key:
-    secure: oSNRivFLAslwi0BpFWLmw8DV26CTgIRihvgSIcBlQg+wbVQHvh42BmF8zPkSC/igjwioKjx7/oihouiVEcDDM/GN6iBSRreuQyl733ixnjFTIf7FWsDoQesqdti3fxjEZt/4oDzXvSxEW/z5tpPg4Oq9NffUTneBYVQD0cfotHE=
-  app: camilo-ies-production
+    secure: LgNh6/qKrQLjWCoDf0DIH4dVXiL+saNO8cDVu7vsRUgf04iczma0iNVvCsyu6+Qm7HePop76DtSP13YvRAb/VbPN4mIDk3rfUcPeXxvHtpHEPml38ojuG8fTpGr6LEFdl+LYF5khon4AkCFG6AnXO4fztbNR9pwGw5VKxynFyCM=
+  app: camilo-eis-production
   on:
     repo: ingridc/camilo
