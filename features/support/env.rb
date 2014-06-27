@@ -5,8 +5,8 @@ require 'capybara/cucumber'
 require 'rspec/expectations'
 require 'simplecov'
 #AGREGAR PARA PODER CORRER LOS FEATURES
-require 'selenium-webdriver'
-Selenium::WebDriver::Firefox::Binary.path='/home/martin/firefox/firefox/firefox-bin'
+#require 'selenium-webdriver'
+#Selenium::WebDriver::Firefox::Binary.path='/home/martin/firefox/firefox/firefox-bin'
 
 SimpleCov.start
 
