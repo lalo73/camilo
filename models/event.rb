@@ -9,6 +9,7 @@ class Event
   property :slug, String
   property :short_url, String
   property :hay_notificaciones, Integer, :default  => 0
+  property :tag, String
   belongs_to :account
   has n, :ratings
   before :save, :set_slug

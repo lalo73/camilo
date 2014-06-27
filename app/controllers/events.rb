@@ -98,6 +98,18 @@ Camilo::App.controllers :events do
     end
   end
 
+  #
+  get '/:event_tag/comparacion' do
+    if params[:event_tag].to_s == ''
+      @message = "Este evento no tiene tag"
+      render 'events/message'
+    else
+      @events = Event.all(:tag => params[:event_tag])
+      render 'events/comparacion'
+    end
+  end
+  #
+
   get '/:event_slug/comments' do
     @event = Event.find_by_slug(params[:event_slug])   
     if(@event.account == current_account) 

@@ -10,6 +10,7 @@ migration 2, :create_events do
       column :slug, String, :length => 255
       column :short_url, String, :length => 255
       column :account_id, Integer
+      column :tag, String, :length => 10
     end
   end
 

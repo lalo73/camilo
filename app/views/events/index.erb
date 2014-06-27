@@ -17,11 +17,12 @@
         <tbody>
             <% @events.each do |e| %>
             <tr>
-                <td><%= e.name %> &nbsp; <%= e.hay_nuevas_evaluaciones %></td>
+                <td><%= e.name %> &nbsp; <%= e.hay_nuevas_evaluaciones %> <%= e.tag %></td>
                 <td class="centered-column"><%= e.date.to_date.to_s %></td>
                 <td class="centered-column">
                     <a href="/events/<%= e.slug %>/ratings" rel="tooltip" title="evaluación" ><i class="icon-tasks"></i></a>
                     <a href="/events/<%= e.slug %>/edit" rel="tooltip" title="editar" ><i class="icon-edit"></i></a><a href="javascript:alert('<%= e.short_url %>')" rel="tooltip" title="copiar link"><i class="icon-link"></i></a>
+                    <a href="/events/<%= e.tag %>/comparacion" rel="tooltip" title="comparar" ><i class="icon-reorder"></i></a>
                 </td>
             </tr>
             <% end %>
