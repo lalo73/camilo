@@ -17,7 +17,7 @@
         <tbody>
             <% @events.each do |e| %>
             <tr>
-                <td><%= e.name %> &nbsp; <%= e.hay_nuevas_evaluaciones %> <%= e.tag %></td>
+                <td><%= e.name %> &nbsp; <%= e.hay_nuevas_evaluaciones %></td>
                 <td class="centered-column"><%= e.date.to_date.to_s %></td>
                 <td class="centered-column">
                     <a href="/events/<%= e.slug %>/ratings" rel="tooltip" title="evaluación" ><i class="icon-tasks"></i></a>
