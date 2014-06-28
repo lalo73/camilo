@@ -100,13 +100,8 @@ Camilo::App.controllers :events do
 
   #
   get '/:event_tag/comparacion' do
-    if params[:event_tag].to_s == ''
-      @message = "Este evento no tiene tag"
-      render 'events/message'
-    else
-      @events = Event.all(:tag => params[:event_tag])
-      render 'events/comparacion'
-    end
+    @events = Event.all(:tag => params[:event_tag])
+    render 'events/comparacion'
   end
   #
 
