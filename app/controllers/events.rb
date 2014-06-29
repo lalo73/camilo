@@ -23,7 +23,11 @@ Camilo::App.controllers :events do
   post :create do
     @event = Event.new(params[:event])
     @event.account = current_account
-    
+
+    if @event.max == " " || @event.max.nil?
+      @event.max = 0
+    end
+
     if @event.save && @event.max >= 0 && @event.check_email
       @event.short_url = UrlShortener.for_default_url.shorten("events/rate/#{@event.slug}").short_url
       @event.save
@@ -75,11 +79,11 @@ Camilo::App.controllers :events do
     rating.value = params[:value]
     rating.comment = params[:comment] 
     rating.save
-    #
+    
     @event.nueva_evaluacion
     @event.account.hay_notificacion = 1
     @event.save
-    #
+    
     @message = "Gracias por su evaluacion"
     render 'events/message'
   end
@@ -87,23 +91,28 @@ Camilo::App.controllers :events do
   get '/:event_slug/ratings' do
     @event = Event.find_by_slug(params[:event_slug])   
     if(@event.account == current_account) 
-      #
+      
       @event.chekear_evaluacion
       @event.account.hay_notificacion = 0
       @event.save
-      #
+      
       render 'events/ratings'
     else
       return 403
     end
   end
 
-  #
-  get '/:event_tag/comparacion' do
+  
+  get '/:event_tag/comparation' do
     @events = Event.all(:tag => params[:event_tag])
-    render 'events/comparacion'
+    if (@events.nil? || @events.size == 1)
+      @message = "Este evento no se puede comparar porque no hay eventos que contengan el mismo tag"
+      render 'events/message'
+    else
+      render 'events/comparation'
+    end
   end
-  #
+    
 
   get '/:event_slug/comments' do
     @event = Event.find_by_slug(params[:event_slug])   

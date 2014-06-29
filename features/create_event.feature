@@ -16,6 +16,33 @@ Feature: Create event
     When I press "saveButton"
     Then I should see "myfirstevent1"
 
+  Scenario: Event without number of members
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with " "
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
+    When I press "saveButton"
+    Then I should see "myfirstevent1"
+
+  Scenario: Event with a number of members with invalid character
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "diez"
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
+    When I press "saveButton"
+    Then I should see "Error: la cantidad de participantes debe ser un numero positivo"
+
+  Scenario: Event with a negative number of members
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My first event"
+    And I fill in "event[max]" with "-10"
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
+    When I press "saveButton"
+    Then I should see "Error: la cantidad de participantes debe ser un numero positivo"
+
   Scenario: Event without members
     Given I am on "the new event page"
     And I fill in "event[name]" with "My first event"

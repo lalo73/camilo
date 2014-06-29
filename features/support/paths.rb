@@ -16,6 +16,9 @@ module NavigationHelpers
     when /the new event\s?page/
       '/events/new'
 
+    when /my events\s?page/
+      '/events/my'
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

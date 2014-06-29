@@ -10,11 +10,30 @@ Given(/^event named "(.*?)" already exists$/) do |event_name|
   e.save
 end
 
+Given(/^event named "(.*?)" with tag "(.*?)" exists$/) do |event_name, tag|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today
+  e.max = 10
+  e.account = Account.first
+  e.tag = tag
+  e.save
+end
+
 Given(/^event named "(.*?)" with date today$/) do |event_name|
   e = Event.new
   e.name = event_name
   e.date = Date.today
   e.max = 10
+  e.account = Account.first
+  e.save
+end
+
+Given(/^event named "(.*?)" with date today and (\d+) members$/) do |event_name, members|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today
+  e.max = members
   e.account = Account.first
   e.save
 end
@@ -42,11 +61,19 @@ When /^I fill in "([^"]*)" with yesterday$/ do |field|
   fill_in(field, :with => Date.today-1)
 end
 
+When /^I fill in "([^"]*)" with today$/ do |field|
+  fill_in(field, :with => Date.today)
+end
+
 Given /^I am logged in$/ do
   visit "/login"
   fill_in("name", :with => "cucumber_user")
   fill_in("email", :with => "cucumber_user@someplace.com")
   click_button "submit"
+end
+
+Given /^I am logged out$/ do
+  visit "/logout"
 end
 
 When(/^I wait a while$/) do
@@ -120,4 +147,8 @@ end
 
 Given(/^I am browsing the edit page for event with slug "(.*?)"$/) do |event_slug|
   visit "/events/#{event_slug}/edit"
+end
+
+Given(/^I am browsing the comparation page for event with tag "(.*?)"$/) do |event_tag|
+  visit "/events/#{event_tag}/comparation"
 end

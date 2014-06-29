@@ -228,26 +228,3 @@ end
 When /^elijo "([^"]*)"$/ do |letra|
   visit("/adivinar?l=#{letra}") 
 end
-
-Then /^deberia ver "([^"]*)"$/ do |esperado|
-    if page.respond_to? :should
-      page.should have_content(esperado)
-    else
-      assert page.has_content?(esperado)
-    end
-end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
