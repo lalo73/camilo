@@ -126,12 +126,17 @@ Camilo::App.controllers :events do
   post '/:event_id/update' do
     @event = Event.get(params[:event_id].to_i)
     if @event && (@event.account == current_account)
-      if @event.update(params[:event])
+      if @event.update(params[:event]) && @event.max >= 0
         flash[:success] = t(:update_success, :model => 'Event', :id =>  "#{params[:id]}")
         redirect(url(:events, :show, :id => @event.id))
       else
-        flash.now[:error] = "Error: ambos campos son requeridos y la fecha debe ser posterior a hoy"
-        render 'events/edit'
+        if @event.max >= 0
+          flash.now[:error] = "Error: ambos campos son requeridos y la fecha debe ser posterior a hoy"
+          render 'events/edit'
+        else
+          flash.now[:error] = "Error: la cantidad de participantes debe ser un numero positivo"
+          render 'events/edit'
+        end
       end
     else
       flash[:warning] = t(:update_warning, :model => 'event', :id => "#{params[:id]}")
