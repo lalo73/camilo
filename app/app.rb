@@ -6,6 +6,7 @@ module Camilo
     register Padrino::Admin::AccessControl
 
     enable :sessions
+    set :protection, except: :session_hijacking
 
     ##
     # Caching support
