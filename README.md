@@ -35,4 +35,13 @@ Finalmente, para el desarrollo del proyecto estamos usando las siguientes herram
 * Rake y Jenkins como herramientas de soporte para automatización del proceso de despliegue
 * Heroku como ambiente de prueba y producción
 
+Datos de contacto
+=================
+
+Desarrolladores:
+* Guillermo Sanchez: @guillens26
+* Javier Toledo: @toledoJavier
+* Leandro Gomez: @lalo73
+
+
 
