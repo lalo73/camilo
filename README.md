@@ -39,9 +39,9 @@ Datos de contacto
 =================
 
 Desarrolladores:
-* Guillermo Sanchez: @guillens26
-* Javier Toledo: @toledoJavier
-* Leandro Gomez: @lalo73
+* Guillermo Sanchez: [@guillens26](https://github.com/guillens26)
+* Javier Toledo: [@toledoJavier](https://github.com/toledoJavier)
+* Leandro Gomez: [@lalo73](https://github.com/lalo73)
 
 
 
