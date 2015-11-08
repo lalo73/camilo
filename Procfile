@@ -1,1 +1,1 @@
-web: bundle exec camilo -C config/apps.rb
+web: bundle exec thin start -C config/apps.rb
