@@ -1,1 +1,1 @@
-web: bundle exec puma -C config/apps.rb
+bundle exec thin start -R config.ru -e $RACK_ENV -p $PORT
