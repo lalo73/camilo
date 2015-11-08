@@ -30,6 +30,7 @@ gem 'dm-core'
 gem 'dm-ar-finders'
 gem 'tilt', '1.3.7'
 gem 'padrino', '0.11.1'
+gem 'cowsay'
 
 group :test do
   gem 'dm-sqlite-adapter'
