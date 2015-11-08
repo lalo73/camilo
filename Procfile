@@ -1,0 +1,1 @@
+web: bundle exec camilo -C config/apps.rb
