@@ -1,1 +1,1 @@
-web: bundle exec padrino start -C config/apps.rb
+web: bundle exec ruby web.rb -p $PORT
