@@ -1,1 +1,1 @@
-web: bundle exec padrino start -C config/boot.rb
+web: bundle exec padrino -C config/boot.rb
