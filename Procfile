@@ -1,1 +1,1 @@
-web: bundle exec rake -C config/apps.rb
+web: bundle exec puma -C config/apps.rb
