@@ -1,8 +1,7 @@
 Camilo
 =======
 
-[![Build Status](https://travis-ci.org/nicopaez/camilo.png?branch=develop)](https://travis-ci.org/nicopaez/camilo)
-[![Code Climate](https://codeclimate.com/github/nicopaez/camilo.png)](https://codeclimate.com/github/nicopaez/camilo)
+[![Build Status](https://travis-ci.org/lalo73/camilo.svg)](https://travis-ci.org/lalo73/camilo)
 
 Esta aplicación es desarrollada en el contexto de la materia Elementos de Ingenieria de Software de la Tecnicatura en Programación Informática de la Universidad Nacional de Quilmes, Argentina.
 
@@ -35,3 +34,14 @@ Finalmente, para el desarrollo del proyecto estamos usando las siguientes herram
 * Travis como servidor de integración contínua
 * Rake y Jenkins como herramientas de soporte para automatización del proceso de despliegue
 * Heroku como ambiente de prueba y producción
+
+Datos de contacto
+=================
+
+Desarrolladores:
+* Guillermo Sanchez: [@guillens26](https://github.com/guillens26)
+* Javier Toledo: [@toledoJavier](https://github.com/toledoJavier)
+* Leandro Gomez: [@lalo73](https://github.com/lalo73)
+
+
+

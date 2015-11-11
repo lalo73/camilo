@@ -1,14 +1,5 @@
 language: ruby
-version: 1.9.3
-before_script:
-- mysql -e 'create database camilo_test;'
-- sh -e /etc/init.d/xvfb start
+rvm:
+    - "1.9.3"
 script: PADRINO_ENV=travis padrino rake
 bundler_args: --without development production
-deploy:
-  provider: heroku
-  api_key:
-    secure: LgNh6/qKrQLjWCoDf0DIH4dVXiL+saNO8cDVu7vsRUgf04iczma0iNVvCsyu6+Qm7HePop76DtSP13YvRAb/VbPN4mIDk3rfUcPeXxvHtpHEPml38ojuG8fTpGr6LEFdl+LYF5khon4AkCFG6AnXO4fztbNR9pwGw5VKxynFyCM=
-  app: camilo-eis-production
-  on:
-    repo: ingridc/camilo
