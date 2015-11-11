@@ -62,7 +62,7 @@ module Camilo
 
     #set :allow_disabled_csrf, true
 
-    configure :development, :test, :travis do
+    configure :development, :test, :travis :staging, :production do
       use OmniAuth::Builder do
         provider :developer
       end
@@ -70,12 +70,12 @@ module Camilo
       ENV['HOST_URL'] = 'http://127.0.0.1:3000/'
     end
     
-    configure :staging, :production do
-      use OmniAuth::Builder do
-        provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_SECRET_KEY'] 
-      end
-      set :login_page, "/auth/twitter"    
-    end
+    #configure :staging, :production do
+     # use OmniAuth::Builder do
+      #  provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_SECRET_KEY'] 
+      #end
+      #set :login_page, "/auth/twitter"    
+    #end
     
     access_control.roles_for :any do |role|
         role.protect "/events"
