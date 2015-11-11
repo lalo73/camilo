@@ -1,7 +1,7 @@
 Camilo
 =======
 
-[![Build Status](https://travis-ci.org/lalo73/camilo.svg)](https://travis-ci.org/lalo73/camilo)
+[![Build Status](https://travis-ci.org/lalo73/camilo.svg)](https://travis-ci.org/lalo73/camilo) [![Code Climate](https://codeclimate.com/github/lalo73/camilo/badges/gpa.svg)](https://codeclimate.com/github/lalo73/camilo)
 
 Esta aplicación es desarrollada en el contexto de la materia Elementos de Ingenieria de Software de la Tecnicatura en Programación Informática de la Universidad Nacional de Quilmes, Argentina.
 
