@@ -1,0 +1,1 @@
+-fs --color -P spec/**/*_spec.rb
