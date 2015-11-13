@@ -1,6 +1,6 @@
 Camilo::Admin.controllers :ratings do
   get :index do
-    @title = "Ratings"
+    @title = 'Ratings'
     @ratings = Rating.all
     render 'ratings/index'
   end
@@ -55,7 +55,7 @@ Camilo::Admin.controllers :ratings do
   end
 
   delete :destroy, :with => :id do
-    @title = "Ratings"
+    @title = 'Ratings'
     rating = Rating.get(params[:id].to_i)
     if rating
       if rating.destroy
@@ -71,7 +71,7 @@ Camilo::Admin.controllers :ratings do
   end
 
   delete :destroy_many do
-    @title = "Ratings"
+    @title = 'Ratings'
     unless params[:rating_ids]
       flash[:error] = pat(:destroy_many_error, :model => 'rating')
       redirect(url(:ratings, :index))

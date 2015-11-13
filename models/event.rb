@@ -25,44 +25,44 @@ class Event
   end
 
   def hay_nuevas_evaluaciones
-    return "Hay nuevas evaluaciones" if self.hay_notificaciones == 1
-    return " " #No hay nuevas evaluaciones
+    return 'Hay nuevas evaluaciones' if hay_notificaciones == 1
+    ' ' #No hay nuevas evaluaciones
   end
 
   def check_date
-    return (self.date >= Date.today) if self.date.is_a?(Date)
-    return false
+    return (date >= Date.today) if date.is_a?(Date)
+    false
   end
 
   def check_email
     result = true
-    self.members.split(',').each do |mail|
-      unless mail.strip =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/ || mail.strip == ""
+    members.split(',').each do |mail|
+      unless mail.strip =~ /^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$/ || mail.strip == ''
         result =  false
         break
       end
     end
-    return result
+    result
   end
 
   def positive_ratings_count
-    self.ratings.all(:value => 1).size
+    ratings.all(:value => 1).size
   end
 
   def negative_ratings_count
-    self.ratings.all(:value => -1).size
+    ratings.all(:value => -1).size
   end
 
   def neutral_ratings_count
-    self.ratings.all(:value => 0).size
+    ratings.all(:value => 0).size
   end
 
   def average_ratings
-    total_rates = self.positive_ratings_count + negative_ratings_count + neutral_ratings_count
+    total_rates = positive_ratings_count + negative_ratings_count + neutral_ratings_count
     if total_rates == 0
-      then return " - "
+      then return ' - '
     else
-      return (self.positive_ratings_count * 10 + negative_ratings_count * 0 + neutral_ratings_count * 5) / total_rates
+      return (positive_ratings_count * 10 + negative_ratings_count * 0 + neutral_ratings_count * 5) / total_rates
     end
   end
 

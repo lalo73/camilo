@@ -2,7 +2,7 @@ class UrlShortener
 
 	attr_accessor :base_url
 
-	def shorten sub_url
+	def shorten (sub_url)
 		slash = sub_url.start_with?('/')?'':'/'
 		full_url = "#{@base_url}#{slash}#{sub_url}"
 		Googl.shorten(full_url)

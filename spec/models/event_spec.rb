@@ -15,7 +15,7 @@ describe Event do
     end
 
     it 'should assign unique slug' do
-      Event.should_receive(:all).with(:slug => 'myevent1').and_return([mock()])
+      Event.should_receive(:all).with(:slug => 'myevent1').and_return([mock])
       Event.should_receive(:all).with(:slug => 'myevent2').and_return([])
       event1 = Event.new
       event1.name ='my event'
@@ -100,7 +100,7 @@ describe Event do
 
     it 'should return " - " if the event did not receive ratings' do 
       event = Event.new
-      event.average_ratings.should eq " - "
+      event.average_ratings.should eq ' - '
     end
     
     it 'should return 0 if the event receive a negative rating' do

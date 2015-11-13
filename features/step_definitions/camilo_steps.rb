@@ -66,14 +66,14 @@ When /^I fill in "([^"]*)" with today$/ do |field|
 end
 
 Given /^I am logged in$/ do
-  visit "/login"
-  fill_in("name", :with => "cucumber_user")
-  fill_in("email", :with => "cucumber_user@someplace.com")
-  click_button "submit"
+  visit '/login'
+  fill_in('name', :with => 'cucumber_user')
+  fill_in('email', :with => 'cucumber_user@someplace.com')
+  click_button 'submit'
 end
 
 Given /^I am logged out$/ do
-  visit "/logout"
+  visit '/logout'
 end
 
 When(/^I wait a while$/) do
@@ -131,14 +131,14 @@ Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) and "(.*?)"$/) do |
 end
 
 Given(/^I add the member "(.*?)"$/) do |member|
-  miembros =  find_field("event[members]").value + ", " + member
-  fill_in("event[members]", :with => miembros)
+  miembros =  find_field('event[members]').value + ', ' + member
+  fill_in('event[members]', :with => miembros)
 end
 
 Given(/^I remove the member "(.*?)"$/) do |member|  
-  miembros =  find_field("event[members]").value
+  miembros =  find_field('event[members]').value
   miembros.slice! member
-  fill_in("event[members]", :with => miembros)
+  fill_in('event[members]', :with => miembros)
 end
 
 Given(/^I am browsing the ratings page for event with slug "(.*?)"$/) do |event_slug|

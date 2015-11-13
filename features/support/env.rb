@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + "/../../config/boot")
+require File.expand_path(File.dirname(__FILE__) + '/../../config/boot')
 
 
 require 'capybara/cucumber'
@@ -10,7 +10,7 @@ require 'simplecov'
 
 SimpleCov.start
 
-ENV['HOST_URL'] = "http://localhost"
+ENV['HOST_URL'] = 'http://localhost'
 ##
 # You can handle all padrino applications using instead:
 #   Padrino.application

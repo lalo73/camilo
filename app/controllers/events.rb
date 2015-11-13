@@ -24,7 +24,7 @@ Camilo::App.controllers :events do
     @event = Event.new(params[:event])
     @event.account = current_account
 
-    if @event.max == " " || @event.max.nil?
+    if @event.max == ' ' || @event.max.nil?
       @event.max = 0
     end
 
@@ -33,13 +33,13 @@ Camilo::App.controllers :events do
       @event.save
       redirect(url(:events, :show, :id => @event.id))
     else
-      flash.now[:error] = "Error: ambos campos son requeridos"
+      flash.now[:error] = 'Error: ambos campos son requeridos'
       if @event.max.is_a?(String) || @event.max < 0
-        flash.now[:error] = "Error: la cantidad de participantes debe ser un numero positivo"
+        flash.now[:error] = 'Error: la cantidad de participantes debe ser un numero positivo'
       end
       
       if !@event.check_email
-        flash.now[:error] = "Error: debe ingresar una direccion de e-mail valida"
+        flash.now[:error] = 'Error: debe ingresar una direccion de e-mail valida'
       end
       render 'events/new'
     end
@@ -48,7 +48,7 @@ Camilo::App.controllers :events do
   get '/:event_slug/edit' do
     @event = Event.find_by_slug(params[:event_slug])
     if(@event.nil?)
-      @message = "El evento buscado no existe."
+      @message = 'El evento buscado no existe.'
       render 'events/message'
     else
       render 'events/edit'
@@ -58,14 +58,14 @@ Camilo::App.controllers :events do
   get '/rate/:event_slug' do
     @event = Event.find_by_slug(params[:event_slug])
     if(@event.nil?)
-      @message = "El evento buscado no existe."
+      @message = 'El evento buscado no existe.'
       render 'events/message'
     elsif(@event.date > Date.today)
-      @message = "El evento no se encuentra disponible para evaluar porque no ha sido dictado"
+      @message = 'El evento no se encuentra disponible para evaluar porque no ha sido dictado'
       render 'events/message'
     else
       if @event.max > 0 && @event.ratings.size == @event.max
-        @message = "Este evento alcanzo la cantidad maxima de evaluaciones."
+        @message = 'Este evento alcanzo la cantidad maxima de evaluaciones.'
         render 'events/message'
       elsif @event.max == 0 || @event.ratings.size != @event.max
         render 'events/rate'
@@ -84,7 +84,7 @@ Camilo::App.controllers :events do
     @event.account.hay_notificacion = 1
     @event.save
     
-    @message = "Gracias por su evaluacion"
+    @message = 'Gracias por su evaluacion'
     render 'events/message'
   end
 
@@ -106,7 +106,7 @@ Camilo::App.controllers :events do
   get '/:event_tag/comparation' do
     @events = Event.all(:tag => params[:event_tag])
     if (@events.nil? || @events.size == 1)
-      @message = "Este evento no se puede comparar porque no hay eventos que contengan el mismo tag"
+      @message = 'Este evento no se puede comparar porque no hay eventos que contengan el mismo tag'
       render 'events/message'
     else
       render 'events/comparation'
@@ -131,10 +131,10 @@ Camilo::App.controllers :events do
         redirect(url(:events, :show, :id => @event.id))
       else
         if @event.max >= 0
-          flash.now[:error] = "Error: ambos campos son requeridos y la fecha debe ser posterior a hoy"
+          flash.now[:error] = 'Error: ambos campos son requeridos y la fecha debe ser posterior a hoy'
           render 'events/edit'
         else
-          flash.now[:error] = "Error: la cantidad de participantes debe ser un numero positivo"
+          flash.now[:error] = 'Error: la cantidad de participantes debe ser un numero positivo'
           render 'events/edit'
         end
       end
@@ -145,7 +145,7 @@ Camilo::App.controllers :events do
   end
 
   delete :destroy, :with => :id do
-    @title = "Events"
+    @title = 'Events'
     event = Event.get(params[:id].to_i)
     if event
       if event.destroy

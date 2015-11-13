@@ -7,7 +7,7 @@ Camilo::App.helpers do
     
   def render_date(date)
     return date.to_date if date.is_a?(Date)
-    return ''
+    ''
   end
 
   def host_url
@@ -19,9 +19,9 @@ Camilo::App.helpers do
   end
 
   def render_rating_value(rating)
-    return ":-)" if rating.value == 1
-    return ":-|" if rating.value == 0
-    return ":-("
+    return ':-)' if rating.value == 1
+    return ':-|' if rating.value == 0
+    ':-('
   end
 
   def login_url

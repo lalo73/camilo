@@ -66,7 +66,7 @@ module Camilo
       use OmniAuth::Builder do
         provider :developer
       end
-      set :login_page, "/login"    
+      set :login_page, '/login'    
       ENV['HOST_URL'] = 'http://127.0.0.1:3000/'
     end
     
@@ -78,8 +78,8 @@ module Camilo
     #end
     
     access_control.roles_for :any do |role|
-        role.protect "/events"
-        role.allow "/events/rate"
+        role.protect '/events'
+        role.allow '/events/rate'
     end
 
     get '/' do
@@ -97,11 +97,11 @@ module Camilo
     end
 
     get :auth, :map => '/auth/:provider/callback' do
-        auth    = request.env["omniauth.auth"]
-        account = Account.find_by_provider_and_uid(auth["provider"], auth["uid"]) || 
+        auth    = request.env['omniauth.auth']
+        account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) || 
                 Account.create_with_omniauth(auth)
         set_current_account(account)
-        redirect "/events/new"
+        redirect '/events/new'
     end
 
     get '/about' do
