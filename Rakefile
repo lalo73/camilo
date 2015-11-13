@@ -16,14 +16,10 @@ PadrinoTasks.init
 
 if ['development', 'test', 'travis'].include?(PADRINO_ENV)
 
+  #run unitest and integration tests!
 	task :all do
     Rake::Task['spec'].invoke
     Rake::Task['cucumber'].invoke
-  end
-
-  task :build_server do
-    Rake::Task['spec_report'].invoke
-    Rake::Task['cucumber_report'].invoke
   end
 
   RSpec::Core::RakeTask.new(:spec) do |t|
@@ -31,13 +27,19 @@ if ['development', 'test', 'travis'].include?(PADRINO_ENV)
     t.rspec_opts = %w(-fs --color)
   end
 
+  Cucumber::Rake::Task.new(:cucumber) do |task|
+    task.cucumber_opts = ["features"]
+  end
+
+  #Run test and integration test with Junit formater
+  task :build_server do
+    Rake::Task['spec_report'].invoke
+    Rake::Task['cucumber_report'].invoke
+  end
+
   RSpec::Core::RakeTask.new(:spec_report) do |t|
     t.pattern = "./spec/**/*_spec.rb"
     t.rspec_opts = %w(--format RspecJunitFormatter --out reports/spec/spec.xml)
-  end
-
-  Cucumber::Rake::Task.new(:cucumber) do |task|
-    task.cucumber_opts = ["features"]
   end
 
   Cucumber::Rake::Task.new(:cucumber_report) do |task|
