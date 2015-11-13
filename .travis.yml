@@ -1,5 +1,7 @@
 language: ruby
 rvm:
     - "1.9.3"
-script: PADRINO_ENV=travis padrino rake
+script: PADRINO_ENV=test padrino rake
 bundler_args: --without development production
+addons:
+  firefox: latest
