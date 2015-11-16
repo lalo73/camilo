@@ -66,24 +66,24 @@ module Camilo
       use OmniAuth::Builder do
         provider :developer
       end
-      set :login_page, '/login'    
-      ENV['HOST_URL'] = 'http://127.0.0.1:3000/'
+      set :login_page, '/login'
+      ENV['HOST_URL'] = 'http://localhost:3000/'
     end
-    
+
     #configure :staging, :production do
      # use OmniAuth::Builder do
-      #  provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_SECRET_KEY'] 
+      #  provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_SECRET_KEY']
       #end
-      #set :login_page, "/auth/twitter"    
+      #set :login_page, "/auth/twitter"
     #end
-    
+
     access_control.roles_for :any do |role|
         role.protect '/events'
         role.allow '/events/rate'
     end
 
     get '/' do
-      render 'home/index'      
+      render 'home/index'
     end
 
     get :login do
@@ -93,12 +93,12 @@ module Camilo
 
     get '/logout' do
       set_current_account(nil)
-      render 'home/index'      
+      render 'home/index'
     end
 
     get :auth, :map => '/auth/:provider/callback' do
         auth    = request.env['omniauth.auth']
-        account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) || 
+        account = Account.find_by_provider_and_uid(auth['provider'], auth['uid']) ||
                 Account.create_with_omniauth(auth)
         set_current_account(account)
         redirect '/events/new'
@@ -109,5 +109,5 @@ module Camilo
     end
 
   end
-  
+
 end
