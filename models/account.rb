@@ -22,7 +22,7 @@ class Account
     account = Account.new
     account.provider = auth['provider']
     account.uid      = auth['uid']
-    account.name = auth['info']['nickname'] # warn: this is for twitter
+    account.name = auth['info']['nickname'] || auth['info']['name'] # warn: this is for twitter
     account.save
     account
   end

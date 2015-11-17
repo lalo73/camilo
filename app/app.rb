@@ -62,7 +62,10 @@ module Camilo
 
     #set :allow_disabled_csrf, true
 
-    configure :development, :test, :travis, :staging, :production do
+    configure :test, :travis do
+      get :login do
+        render '/home/login'
+      end
       use OmniAuth::Builder do
         provider :developer
       end
@@ -70,12 +73,15 @@ module Camilo
       ENV['HOST_URL'] = 'http://localhost:3000/'
     end
 
-    #configure :staging, :production do
-     # use OmniAuth::Builder do
-      #  provider :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_SECRET_KEY']
-      #end
-      #set :login_page, "/auth/twitter"
-    #end
+    configure :development, :staging, :production do
+      get :login do
+        render '/home/facebook_login'
+      end
+     use OmniAuth::Builder do
+       provider :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']
+      end
+      set :login_page, "/auth/facebook"
+    end
 
     access_control.roles_for :any do |role|
         role.protect '/events'
@@ -85,11 +91,6 @@ module Camilo
     get '/' do
       render 'home/index'
     end
-
-    get :login do
-      render '/home/login'
-    end
-
 
     get '/logout' do
       set_current_account(nil)
