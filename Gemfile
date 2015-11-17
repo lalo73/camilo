@@ -13,7 +13,7 @@ gem 'thin' # or mongrel
 
 gem 'rake'
 gem 'omniauth'
-gem 'omniauth-twitter', :github => 'arunagw/omniauth-twitter'
+gem 'omniauth-facebook'
 gem 'erubis', '~> 2.7.0'
 gem 'googl'
 gem 'slim'
