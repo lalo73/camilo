@@ -18,7 +18,7 @@ Feature: Notify event
   Scenario: Event with notifications
     Given I want to rate "evento a notificar"
     When I follow "happyButton"
-    And I wait a while    
+    And I wait a while
     And I am logged in
     Then I should see "Hay nuevas evaluaciones"
     And I am on "my events page"

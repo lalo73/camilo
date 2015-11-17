@@ -77,7 +77,7 @@ Given /^I am logged out$/ do
 end
 
 When(/^I wait a while$/) do
-  sleep(2)
+  sleep(4)
 end
 
 Given(/^the event named "(.*?)" and rated with (\d+)$/) do |event_name, rate|
