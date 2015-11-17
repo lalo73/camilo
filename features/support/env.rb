@@ -4,11 +4,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../config/boot')
 require 'capybara/cucumber'
 require 'rspec/expectations'
 require 'simplecov'
-#AGREGAR PARA PODER CORRER LOS FEATURES
-#require 'selenium-webdriver'
-#Selenium::WebDriver::Firefox::Binary.path='/home/martin/firefox/firefox/firefox-bin'
-
-SimpleCov.start
+require 'capybara/poltergeist'
 
 ENV['HOST_URL'] = 'http://localhost'
 ##
@@ -16,5 +12,5 @@ ENV['HOST_URL'] = 'http://localhost'
 #   Padrino.application
 
 DataMapper.auto_migrate!
-Capybara.default_driver = :selenium
+Capybara.default_driver = :poltergeist
 Capybara.app = Camilo::App.tap { |app|  }
