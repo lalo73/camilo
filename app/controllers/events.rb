@@ -21,6 +21,7 @@ Camilo::App.controllers :events do
   end
 
   post :create do
+    params[:event][:requires_auth] = !!params[:event][:requires_auth]
     @event = Event.new(params[:event])
     @event.account = current_account
 
@@ -37,7 +38,7 @@ Camilo::App.controllers :events do
       if @event.max.is_a?(String) || @event.max < 0
         flash.now[:error] = 'Error: la cantidad de participantes debe ser un numero positivo'
       end
-      
+
       if !@event.check_email
         flash.now[:error] = 'Error: debe ingresar una direccion de e-mail valida'
       end
@@ -77,32 +78,32 @@ Camilo::App.controllers :events do
     @event = Event.find_by_slug(params[:event_id])
     rating = Rating.for_event(@event)
     rating.value = params[:value]
-    rating.comment = params[:comment] 
+    rating.comment = params[:comment]
     rating.save
-    
+
     @event.nueva_evaluacion
     @event.account.hay_notificacion = 1
     @event.save
-    
+
     @message = 'Gracias por su evaluacion'
     render 'events/message'
   end
 
   get '/:event_slug/ratings' do
-    @event = Event.find_by_slug(params[:event_slug])   
-    if(@event.account == current_account) 
-      
+    @event = Event.find_by_slug(params[:event_slug])
+    if(@event.account == current_account)
+
       @event.chekear_evaluacion
       @event.account.hay_notificacion = 0
       @event.save
-      
+
       render 'events/ratings'
     else
       return 403
     end
   end
 
-  
+
   get '/:event_tag/comparation' do
     @events = Event.all(:tag => params[:event_tag])
     if (@events.nil? || @events.size == 1)
@@ -112,11 +113,11 @@ Camilo::App.controllers :events do
       render 'events/comparation'
     end
   end
-    
+
 
   get '/:event_slug/comments' do
-    @event = Event.find_by_slug(params[:event_slug])   
-    if(@event.account == current_account) 
+    @event = Event.find_by_slug(params[:event_slug])
+    if(@event.account == current_account)
       render 'events/comments'
     else
       return 403
