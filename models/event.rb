@@ -10,6 +10,7 @@ class Event
   property :short_url, String
   property :hay_notificaciones, Integer, :default  => 0
   property :tag, String
+  property :requires_auth, Boolean, default: false
   belongs_to :account
   has n, :ratings
   before :save, :set_slug
@@ -69,7 +70,7 @@ class Event
   def set_slug
     self.slug = Event.generate_slug(@name) if self.new?
   end
-  
+
   def slug
     set_slug if @slug.nil?
     @slug
@@ -80,7 +81,7 @@ class Event
     candidate_slug = "#{candidate_slug}#{initial_count}".downcase
     count = Event.all(:slug => candidate_slug).size
     if count == 0
-      return candidate_slug 
+      return candidate_slug
     else
       return generate_slug(name, initial_count + 1)
     end

@@ -5,6 +5,7 @@
     <p>Cantidad de participantes: <%= @event.max %></p>
     <p>Fecha: <%= @event.date.to_date.to_s %></p>
     <p>Tag: <%= @event.tag %></p>
+    <p>Require autenticacion: <%= @event.requires_auth ? "Si" : "No" %></p>
     <p>Identificador: <%= @event.slug %></p>
     <p>Participantes: <%= @event.members %></p>
     <p>Link corto: <a href="<%= @event.short_url %>"><%= @event.short_url %></a>
