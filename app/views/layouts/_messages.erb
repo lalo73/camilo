@@ -1,0 +1,9 @@
+
+<% if flash[:notice] %>
+<div class="alert alert-notice">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+  <div class="centered">
+    <%= flash[:notice] %>
+  </div>
+</div>
+<% end %>

@@ -1,17 +1,17 @@
-@wip
 Feature: Rate event
   As an anonymous attendee
   I want to rate an event which requires authentication
   and should be redirect to login page before rate
 
   Background:
-    Given event named "event with members" with date today and 2 members
+    Given event named "event with requires_auth" with date today and 2 members and requires auth
 
   Scenario: Redirect to login page
-    Given I want to rate "event with members"
+    Given I want to rate "event with requires_auth"
     Then I should see "Este evento requiere autenticacion"
 
+  @wip
   Scenario: Login and rate
     I am logged in
-    Given I want to rate "event with members"
+    Given I want to rate "event with requires_auth"
     Then I should see "Evaluación de evento"

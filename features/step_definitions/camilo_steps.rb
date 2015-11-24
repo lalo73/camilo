@@ -38,6 +38,16 @@ Given(/^event named "(.*?)" with date today and (\d+) members$/) do |event_name,
   e.save
 end
 
+Given(/^event named "(.*?)" with date today and (\d+) members and requires auth$/) do |event_name, members|
+  e = Event.new
+  e.name = event_name
+  e.date = Date.today
+  e.max = members
+  e.requires_auth = true
+  e.account = Account.first
+  e.save
+end
+
 Given(/^event named "(.*?)" with date tomorrow$/) do |event_name|
   e = Event.new
   e.name = event_name
@@ -113,7 +123,7 @@ Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) and "(.*?)"$/) do |
   e.date = Date.today + 1
   e.account = Account.first
   e.save
-  
+
   r = Rating.for_event(e)
   r.value = rate1
   r.save
@@ -135,7 +145,7 @@ Given(/^I add the member "(.*?)"$/) do |member|
   fill_in('event[members]', :with => miembros)
 end
 
-Given(/^I remove the member "(.*?)"$/) do |member|  
+Given(/^I remove the member "(.*?)"$/) do |member|
   miembros =  find_field('event[members]').value
   miembros.slice! member
   fill_in('event[members]', :with => miembros)

@@ -68,6 +68,9 @@ Camilo::App.controllers :events do
       if @event.max > 0 && @event.ratings.size == @event.max
         @message = 'Este evento alcanzo la cantidad maxima de evaluaciones.'
         render 'events/message'
+      elsif @event.requires_auth && !current_account
+        flash[:notice] = "Este evento requiere autenticacion"
+        redirect "/login"
       elsif @event.max == 0 || @event.ratings.size != @event.max
         render 'events/rate'
       end
