@@ -10,8 +10,7 @@ Feature: Rate event
     Given I want to rate "event with requires_auth"
     Then I should see "Este evento requiere autenticacion"
 
-  @wip
   Scenario: Login and rate
-    I am logged in
+    Given I am logged in
     Given I want to rate "event with requires_auth"
     Then I should see "Evaluación de evento"
