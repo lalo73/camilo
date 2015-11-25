@@ -7,6 +7,7 @@ class Rating
   property :created_at, DateTime
   property :comment, String
   belongs_to :event
+  belongs_to :account
 
   def self.for_event(event)
   	rating = Rating.new

@@ -97,6 +97,7 @@ Given(/^the event named "(.*?)" and rated with (\d+)$/) do |event_name, rate|
   e.account = Account.first
   e.save
   r = Rating.for_event(e)
+  r.account= e.account
   r.value = rate
   r.save
 end
@@ -111,6 +112,7 @@ Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) times$/) do |event_
 
   num.times do
     r = Rating.for_event(e)
+    r.account= e.account
     r.value = rate
     r.save
     e.ratings.push(r)
@@ -125,16 +127,19 @@ Given(/^the event named "(.*?)" and rated with (\d+) , (\d+) and "(.*?)"$/) do |
   e.save
 
   r = Rating.for_event(e)
+  r.account= e.account
   r.value = rate1
   r.save
   e.ratings.push(r)
 
   r = Rating.for_event(e)
+  r.account= e.account
   r.value = rate2
   r.save
   e.ratings.push(r)
 
   r = Rating.for_event(e)
+  r.account= e.account
   r.value = rate3
   r.save
   e.ratings.push(r)
@@ -161,4 +166,18 @@ end
 
 Given(/^I am browsing the comparation page for event with tag "(.*?)"$/) do |event_tag|
   visit "/events/#{event_tag}/comparation"
+end
+
+Given(/^I login as "(.*?)" "(.*?)"$/) do |name, email|
+  visit '/login'
+  fill_in('name', :with => name)
+  fill_in('email', :with => email)
+  click_button 'submit'
+end
+
+Given(/^I rate "(.*?)" choosing "(.*?)"$/) do |event_name, rate|
+  event = Event.find_by_name(event_name)
+  visit "/events/rate/#{event.slug}"
+  rate_button= find_link(rate)
+  rate_button.click
 end

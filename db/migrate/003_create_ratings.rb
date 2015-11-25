@@ -6,6 +6,7 @@ migration 3, :create_ratings do
       column :comment, String, :length => 255
       column :created_at, Date
       column :event_id, Integer
+      column :account_id, Integer, :default => -1
     end
   end
 
