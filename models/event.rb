@@ -94,4 +94,10 @@ class Event
   def evaluacion_de(account)
     ratings.first(:account_id => account.id)
   end
+
+  def actualizar_evaluacion(account, value, comment)
+    rating= evaluacion_de account
+    rating.update(:value => value)
+    rating.update(:comment => comment)
+  end
 end
