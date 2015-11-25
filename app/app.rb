@@ -62,7 +62,7 @@ module Camilo
 
     #set :allow_disabled_csrf, true
 
-    configure :test, :travis do
+    configure :development, :test, :travis do
       get :login do
         render '/home/login'
       end
@@ -73,7 +73,7 @@ module Camilo
       ENV['HOST_URL'] = 'http://localhost:3000/'
     end
 
-    configure :development, :staging, :production do
+    configure :staging, :production do
       get :login do
         render '/home/facebook_login'
       end

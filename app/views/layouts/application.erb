@@ -80,6 +80,19 @@
 <script src="/javascripts/jquery.validate.js"></script>
 <script src="/javascripts/bootstrap.min.js"></script>
 <script src="/javascripts/bootswatch.js"></script>
+
+<script src="/javascripts/clipboard.js"></script>
+<script>
+    //var btn = document.getElementById('btn');
+    var clipboard = new Clipboard('.btn');
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+</script>
+
  <%= yield_content :additional_js %>
 </body>
 </html>
