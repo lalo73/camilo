@@ -85,8 +85,14 @@
   the FB.login() function when clicked.
 -->
 
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
 <div id="status">
+</div>
+<div class="well">
+  <form class="centered">
+    <p>Esta aplicación no publicara ningún tipo de contenido en su muro ni usara su nombre para hacerlo, 
+       al iniciar sesión con facebook podrá crear eventos y evaluar aquellos que requieran autenticación.
+    </p>
+    <fb:login-button size="xlarge" scope="public_profile,email" onlogin="checkLoginState();">
+    </fb:login-button>
+  </form>
 </div>
