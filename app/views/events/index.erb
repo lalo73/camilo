@@ -1,6 +1,6 @@
 <div class="well">
     <h1>Mis eventos</h1>
-    
+
     <div class="push-right">
         <a href="new"><button class="btn btn-primary">Crear evento</button></a>
     </div>
@@ -13,7 +13,7 @@
                 <th class="centered-column">Fecha</th>
                 <th class="centered-column">Acciones</th>
             </tr>
-        </thead>    
+        </thead>
         <tbody>
             <% @events.each do |e| %>
             <tr>
@@ -25,9 +25,9 @@
                     <% if (e.tag != '') %>
                     <a href="/events/<%= e.tag %>/comparation" rel="tooltip" title="comparar" ><i class="icon-reorder"></i></a>
                     <input id="copy-event-link-<%= e.id %>" value='<%= e.short_url %>'>
-                    <button class="btn" data-clipboard-target= "#copy-event-link-<%= e.id %>">
+                    <button class="btn copy-link" data-clipboard-target= "#copy-event-link-<%= e.id %>">
                         Copy to clipboard
-                    </button> 
+                    </button>
                     <% end %>
 
                 </td>
@@ -40,3 +40,9 @@
     </table>
 
 </div>
+
+<% content_for :additional_js do %>
+<script>
+    new Clipboard('.btn.copy-link');
+</script>
+<% end %>
