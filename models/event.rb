@@ -86,5 +86,12 @@ class Event
       return generate_slug(name, initial_count + 1)
     end
   end
+  
+  def ya_fue_evaluado_por(current_account)
+    ratings.any? {|r| r.account_id == current_account.id}
+  end
 
+  def evaluacion_de(account)
+    ratings.first(:account_id => account.id)
+  end
 end

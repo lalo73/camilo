@@ -151,5 +151,15 @@ describe Event do
       event.average_ratings.should eq 6
     end
   end
-
+  describe 'evaluacion_de' do
+    it 'evaluacion_de return rating if the user rate the event' do
+      user= Account.new
+      event = Event.new
+      rating = Rating.for_event(event)
+      rating.account= user
+      rating.value = -1
+      event.ratings.push(rating)
+      event.evaluacion_de(user).should be rating
+    end
+  end
 end

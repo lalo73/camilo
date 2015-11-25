@@ -80,15 +80,26 @@ Camilo::App.controllers :events do
   post '/rate/:event_id' do
     @event = Event.find_by_slug(params[:event_id])
     rating = Rating.for_event(@event)
-    rating.value = params[:value]
-    rating.comment = params[:comment]
-    rating.save
+    @message = 'Gracias por su evaluacion'
+    if !!current_account && @event.ya_fue_evaluado_por(current_account)
+      rating= evaluacion_de account
+      rating.update(:value => params[:value])
+      rating.update(:comment => params[:comment])
+    elsif !!current_account
+      rating.account= current_account 
+      rating.value = params[:value]
+      rating.comment = params[:comment]
+      rating.save 
+    else
+      rating.account= Account.new
+      rating.value = params[:value]
+      rating.comment = params[:comment]
+      rating.save 
+    end 
 
     @event.nueva_evaluacion
     @event.account.hay_notificacion = 1
     @event.save
-
-    @message = 'Gracias por su evaluacion'
     render 'events/message'
   end
 
