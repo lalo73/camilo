@@ -82,18 +82,20 @@ Camilo::App.controllers :events do
     rating = Rating.for_event(@event)
     @message = 'Gracias por su evaluacion'
     if !!current_account && @event.ya_fue_evaluado_por(current_account)
+      @old_value = @event.evaluacion_de(current_account).value
+      @new_value = params[:value].to_i
       @event.actualizar_evaluacion(current_account, params[:value], params[:comment])
     elsif !!current_account
-      rating.account= current_account 
+      rating.account= current_account
       rating.value = params[:value]
       rating.comment = params[:comment]
-      rating.save 
+      rating.save
     else
       rating.account= Account.new
       rating.value = params[:value]
       rating.comment = params[:comment]
-      rating.save 
-    end 
+      rating.save
+    end
 
     @event.nueva_evaluacion
     @event.account.hay_notificacion = 1

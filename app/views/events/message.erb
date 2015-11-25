@@ -1,5 +1,7 @@
 <div class="well">
   <form class="centered">
     <h1><%=@message %></h1>
+    <% if @old_value %><h2>Tu valoracion anterior era: <%= rating_by @old_value %></h2>.<% end %>
+    <% if @new_value %><h2>Ahora tu valoracion es: <%= rating_by @new_value %></h2>.<% end %>
   </form>
 </div>
