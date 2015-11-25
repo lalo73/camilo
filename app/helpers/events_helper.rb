@@ -19,8 +19,12 @@ Camilo::App.helpers do
   end
 
   def render_rating_value(rating)
-    return ':-)' if rating.value == 1
-    return ':-|' if rating.value == 0
+    self.rating_by rating.value
+  end
+
+  def rating_by(value)
+    return ':-)' if value == 1
+    return ':-|' if value == 0
     ':-('
   end
 
