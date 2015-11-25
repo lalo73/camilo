@@ -1,7 +1,5 @@
 require 'bundler/setup'
 require 'padrino-core/cli/rake'
-require 'rspec/core/rake_task'
-require 'cucumber/rake/task'
 PADRINO_ENV  = ENV['PADRINO_ENV'] ||= ENV['RACK_ENV'] ||= 'test'  unless defined?(PADRINO_ENV)
 
 task :version do
@@ -15,6 +13,8 @@ PadrinoTasks.use(:datamapper)
 PadrinoTasks.init
 
 if ['development', 'test', 'travis'].include?(PADRINO_ENV)
+  require 'rspec/core/rake_task'
+  require 'cucumber/rake/task'
 
   #run unitest and integration tests!
 	task :all do

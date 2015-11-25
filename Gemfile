@@ -32,7 +32,7 @@ gem 'tilt', '1.3.7'
 gem 'padrino', '0.11.1'
 gem 'cowsay'
 
-group :test do
+group :test, :development do
   gem 'dm-sqlite-adapter'
   gem 'rspec'
   gem 'rspec_junit_formatter'
