@@ -8,6 +8,7 @@
     <p>Require autenticacion: <%= @event.requires_auth ? "Si" : "No" %></p>
     <p>Identificador: <%= @event.slug %></p>
     <p>Participantes: <%= @event.members %></p>
-    <p>Link corto: <a href="<%= @event.short_url %>"><%= @event.short_url %></a>
+    <p>Link corto: <a href="<%= @event.short_url %>"><%= @event.short_url %></a></p>
+    <p>Link del video: <a href="<%= @event.video_link %>"><%= @event.video_link %></a></p>
   </form>
 </div>
