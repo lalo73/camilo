@@ -7,6 +7,7 @@ class Event
   property :date, DateTime, :required => true
   property :members, String
   property :slug, String
+  property :video_link, String
   property :short_url, String
   property :hay_notificaciones, Integer, :default  => 0
   property :tag, String
@@ -86,7 +87,7 @@ class Event
       return generate_slug(name, initial_count + 1)
     end
   end
-  
+
   def ya_fue_evaluado_por(current_account)
     ratings.any? {|r| r.account_id == current_account.id}
   end
