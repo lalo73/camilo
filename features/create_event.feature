@@ -87,3 +87,14 @@ Feature: Create event
     And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
     When I press "saveButton"
     Then I should see "Error"
+
+  Scenario: Event with youtube video
+    Given I am on "the new event page"
+    And I fill in "event[name]" with "My event with video"
+    And I fill in "event[max]" with "10"
+    And I fill in "event[date]" with tomorrow
+    And I fill in "event[video_link]" with "https://www.youtube.com/watch?v=EwmI5NDKLBo"
+    And I fill in "event[members]" with "miembro1@gmail.com, miembro2@outlook.com, miembro3@yahoo.com"
+    When I press "saveButton"
+    Then I should see "myeventwithvideo"
+    And I should see "Link del video: https://www.youtube.com/watch?v=EwmI5NDKLBo"
