@@ -4,6 +4,9 @@
     <h1>Evaluación de evento</h1>
     <p>Nombre: <%= @event.name %></p>
     <p>Fecha: <%= @event.date.to_date.to_s %></p>
+    <% if @event.posee_link_video %>
+        <div id="player" videoID="<%= @event.video_link.partition('=').last %>"></div>
+    <% end %>
  	<input type="text" id="comment" name="comment" class="large" placeholder="comentario"/><br/>
     <a href="#" class="btn" id="happyButton"><img src="/images/happy.png"/></a>
     <a href="#" class="btn" id="silentButton"><img src="/images/silent.png"/></a>
@@ -17,5 +20,21 @@
     <%= javascript_include_tag 'rate.js' %>
 <% end %>
 
+<script>
+  // 2. This code loads the IFrame Player API code asynchronously.
+  var tag = document.createElement('script');
 
-    
+  tag.src = "https://www.youtube.com/iframe_api";
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '390',
+      width: '640',
+      videoId: $("#player").attr("videoID"),
+    });
+  }
+</script>
+

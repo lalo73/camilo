@@ -181,3 +181,17 @@ Given(/^I rate "(.*?)" choosing "(.*?)"$/) do |event_name, rate|
   rate_button= find_link(rate)
   rate_button.click
 end
+
+Given(/^event named "(.*?)" with date today and the video link "(.*?)"$/) do |event_name, link|
+  e = Event.new
+  e.video_link= link
+  e.name = event_name
+  e.date = Date.today
+  e.max = 10
+  e.account = Account.first
+  e.save
+end
+
+Then(/^I should see the video the event in the page$/) do
+  expect { find("#player") }.to_not raise_error(Capybara::ElementNotFound)
+end
