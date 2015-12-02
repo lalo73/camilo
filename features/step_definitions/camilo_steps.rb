@@ -195,3 +195,7 @@ end
 Then(/^I should see the video the event in the page$/) do
   expect { find("#player") }.to_not raise_error(Capybara::ElementNotFound)
 end
+
+Then(/^I should not see any video in the page$/) do
+  expect { find("#player") }.to raise_error(Capybara::ElementNotFound)
+end
