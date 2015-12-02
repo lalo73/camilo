@@ -101,4 +101,8 @@ class Event
     rating.update(:value => value)
     rating.update(:comment => comment)
   end
+
+  def posee_link_video
+    !video_link.nil? 
+  end
 end

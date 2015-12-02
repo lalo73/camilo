@@ -162,4 +162,13 @@ describe Event do
       event.evaluacion_de(user).should be rating
     end
   end
+
+  describe 'posee_link_video' do
+    it 'posee_link_video return true' do
+      user= Account.new
+      event = Event.new
+      event.video_link= "https://www.youtube.com/watch?v=EwmI5NDKLBo"
+      event.posee_link_video.should be_true
+    end
+  end
 end
