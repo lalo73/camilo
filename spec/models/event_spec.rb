@@ -170,5 +170,11 @@ describe Event do
       event.video_link= "https://www.youtube.com/watch?v=EwmI5NDKLBo"
       event.posee_link_video.should be_true
     end
+
+    it 'posee_link_video return false' do
+      user= Account.new
+      event = Event.new
+      event.posee_link_video.should be_false
+    end
   end
 end
