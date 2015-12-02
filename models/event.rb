@@ -103,6 +103,6 @@ class Event
   end
 
   def posee_link_video
-    !video_link.nil? 
+    !(video_link.nil? || video_link.empty?)
   end
 end
